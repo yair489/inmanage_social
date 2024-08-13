@@ -13,11 +13,11 @@ class Database{
      * 
      * @return  PDO object conncection to server 
      */
-    public function gecConn(){
+    public function getConn(){
         $db_host = "localhost";
-        $db_name = "cms";
-        $db_user = "cms_www";
-        $db_pass = "is.CnI9]B5rKVIo[";
+        $db_name = "inmanage";
+        $db_user = "cms_inmanage";
+        $db_pass = "A1Q/LBpgHoq_VQbk";
 
         $dsn = 'mysql:host=' . $db_host . ';dbname=' . $db_name . ';charset=utf8';
 
