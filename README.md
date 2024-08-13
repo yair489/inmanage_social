@@ -7,5 +7,5 @@ before running
 * save the username password and Host name in 'classes/Database.php' folder
 * run in the browser http://localhost/inmanage_social/index.php
 * enjoy
-
+## Description
   
