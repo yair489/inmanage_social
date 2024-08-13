@@ -59,7 +59,7 @@ $users = Users::getAll($conn);
                     <?php foreach ($posts as $post) : ?>
                         <li>
                             <article>
-                                <h4><a href="article.php?id=<?= $post->post_id; ?>"><?= htmlspecialchars($post->title); ?></a></h4>
+                                <h4><a href="post.php?id=<?= $post->post_id; ?>"><?= htmlspecialchars($post->title); ?></a></h4>
                                 <p><?= htmlspecialchars($post->content); ?></p>
                             </article>
                         </li>
