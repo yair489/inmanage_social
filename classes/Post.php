@@ -122,6 +122,31 @@ class Post{
      */
     public function update($conn)
     {
+        if ($this->validate()) {
+
+            $sql = "UPDATE post
+                    SET title = :title,
+                        content = :content,
+                        create_at = :create_at
+                    WHERE post_id = :post_id";
+
+            $stmt = $conn->prepare($sql);
+
+            $stmt->bindValue(':post_id', $this->post_id, PDO::PARAM_INT);
+            $stmt->bindValue(':title', $this->title, PDO::PARAM_STR);
+            $stmt->bindValue(':content', $this->content, PDO::PARAM_STR);
+
+            // if ($this->create_at == '') {
+            //     $stmt->bindValue(':create_at', null, PDO::PARAM_NULL);
+            // } else {
+                $stmt->bindValue(':create_at', $this->create_at, PDO::PARAM_STR);
+            // }
+
+            return $stmt->execute();
+
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -151,29 +176,29 @@ class Post{
      */
     protected function validate()
     {
-        if ($this->title == '') {
-            $this->errors[] = 'Title is required';
-        }
-        if ($this->content == '') {
-            $this->errors[] = 'Content is required';
-        }
+        // if ($this->title == '') {
+        //     $this->errors[] = 'Title is required';
+        // }
+        // if ($this->content == '') {
+        //     $this->errors[] = 'Content is required';
+        // }
 
-        if ($this->published_at != '') {
-            $date_time = date_create_from_format('Y-m-d H:i:s', $this->published_at);
+        // if ($this->published_at != '') {
+        //     $date_time = date_create_from_format('Y-m-d H:i:s', $this->published_at);
             
-            if ($date_time === false) {
+        //     if ($date_time === false) {
 
-                $this->errors[] = 'Invalid date and time';
+        //         $this->errors[] = 'Invalid date and time';
 
-            } else {
+        //     } else {
 
-                $date_errors = date_get_last_errors();
+        //         $date_errors = date_get_last_errors();
 
-                if ($date_errors['warning_count'] > 0) {
-                    $this->errors[] = 'Invalid date and time';
-                }
-            }
-        }
+        //         if ($date_errors['warning_count'] > 0) {
+        //             $this->errors[] = 'Invalid date and time';
+        //         }
+        //     }
+        // }
 
         // return empty($this->errors);
         return true;
