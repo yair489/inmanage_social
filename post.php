@@ -24,6 +24,7 @@ if (isset($_GET['id'])) {
 
     <a href="edit_article.php?id=<?= $post->post_id; ?>">Edit</a>
     <a href="delete_article.php?id=<?= $post->post_id; ?>">Delete</a>
+    <a href="index.php">Home</a>
 
 <?php else : ?>
     <p> not found post </p>
