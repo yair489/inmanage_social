@@ -85,6 +85,24 @@ class Post{
         }
     }
 
+    public static function getByID($conn, $id, $columns = '*')
+    {
+        $sql = "SELECT $columns
+                FROM post
+                WHERE post_id = :id";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Post');
+
+        if ($stmt->execute()) {
+
+            return $stmt->fetch();
+
+        }
+    }
+
     /**
      * 
      */
