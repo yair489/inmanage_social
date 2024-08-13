@@ -24,10 +24,10 @@ $users = Users::getAll($conn);
 
     <main>
 
-<?php if (false)://(isLoggedIn()) : ?>
+<?php if (true)://(isLoggedIn()) : ?>
     
     <p>You are logged in. <a href="logout.php">Log out</a></p>
-    <p><a href="new-article.php">New article</a></p>
+    <p><a href="new_post.php">New post</a></p>
 
 <?php else : ?>
     

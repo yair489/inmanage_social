@@ -11,6 +11,11 @@ if (! empty ($post->errors)) : ?>
 
 <form method = "post">
 
+    <div>
+        <label for="user_id"> user_id </label>
+        <input type="number" name="user_id" id="user_id" placeholder="Enter a number" value="<?= htmlspecialchars($post->user_id); ?>">
+    </div>
+
 
     <div>
         <label for="title"> Title </label>

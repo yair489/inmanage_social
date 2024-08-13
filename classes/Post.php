@@ -169,6 +169,26 @@ class Post{
      */
     public function create($conn)
     {
+        if ($this->validate()) {
+
+            $sql = "INSERT INTO post (user_id, title, content, create_at)
+                    VALUES (:user_id, :title, :content, :create_at)";
+
+            $stmt = $conn->prepare($sql);
+
+            $stmt->bindValue(':user_id', $this->user_id, PDO::PARAM_INT);  // Bind as integer
+            $stmt->bindValue(':title', $this->title, PDO::PARAM_STR);
+            $stmt->bindValue(':content', $this->content, PDO::PARAM_STR);
+            $stmt->bindValue(':create_at', $this->create_at, PDO::PARAM_STR);
+
+            if ($stmt->execute()) {
+                $this->post_id = $conn->lastInsertId();
+                return true;
+            }
+
+        } else {
+            return false;
+        }
     }
 
     /**
