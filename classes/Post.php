@@ -40,18 +40,49 @@ class Post{
     public $active;
 
     /**
-     * 
+     * Validation errors
+     * @var array
+     */
+    public $errors = [];
+
+
+    /**
+     * Get all the posts
+     *
+     * @param object $conn Connection to the database
+     *
+     * @return array An associative array of all the article records
      */
     public static function getAll($conn)
     {
+        $sql = "SELECT *
+                FROM post
+                ORDER BY create_at;";
 
+        $results = $conn->query($sql);
+
+        return $results->fetchAll(PDO::FETCH_ASSOC);
     }
     
     /**
      * 
      */
-    public static function getByID($conn)
+    public static function getByUserID($conn ,$id)
     {
+        $sql = "SELECT *
+                FROM post
+                WHERE user_id = :id";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'post');
+
+        if ($stmt->execute()) {
+
+            return $stmt->fetchAll();
+
+        }
     }
 
     /**
@@ -80,6 +111,14 @@ class Post{
      */
     public function delete($conn)
     {
+        $sql = "DELETE FROM post
+                WHERE post_id = :post_id";
+
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bindValue(':post_id', $this->post_id, PDO::PARAM_INT);
+
+        return $stmt->execute();
     }
 
     /**
@@ -94,6 +133,32 @@ class Post{
      */
     protected function validate()
     {
+        if ($this->title == '') {
+            $this->errors[] = 'Title is required';
+        }
+        if ($this->content == '') {
+            $this->errors[] = 'Content is required';
+        }
+
+        if ($this->published_at != '') {
+            $date_time = date_create_from_format('Y-m-d H:i:s', $this->published_at);
+            
+            if ($date_time === false) {
+
+                $this->errors[] = 'Invalid date and time';
+
+            } else {
+
+                $date_errors = date_get_last_errors();
+
+                if ($date_errors['warning_count'] > 0) {
+                    $this->errors[] = 'Invalid date and time';
+                }
+            }
+        }
+
+        // return empty($this->errors);
+        return true;
     }
 
 }
