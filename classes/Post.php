@@ -106,15 +106,20 @@ class Post{
     /**
      * 
      */
-    public static function getByActiveUser($conn)
-    {
-    }
-
-    /**
-     * 
-     */
     public static function getByBirthday($conn)
     {
+        $sql = "SELECT *
+        FROM post
+        JOIN users
+        ON post.user_id = users.user_id
+        WHERE MONTH(users.birthday) = MONTH(CURDATE())
+        ORDER BY post.create_at DESC
+        LIMIT 1;";
+
+        $post = $conn->query($sql);
+
+        $res =  $post->fetchAll(PDO::FETCH_ASSOC);
+        return $res[0]['post_id'];
     }
 
     /**
