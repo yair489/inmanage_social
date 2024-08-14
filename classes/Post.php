@@ -28,7 +28,7 @@ class Post{
     public $content;
     
     /**
-     * when is create
+     * when the post is create
      * @var Datetime
      */
     public $create_at;
@@ -65,7 +65,11 @@ class Post{
     }
     
     /**
-     * 
+     * Get  the post of specific user
+     *
+     * @param object $conn Connection to the database
+     *
+     * @return object An associative array of all the article records
      */
     public static function getByUserID($conn ,$id)
     {
@@ -84,7 +88,14 @@ class Post{
 
         }
     }
-
+    /**
+     * Get  the specific post by post_id
+     *
+     * @param object $conn Connection to the database
+     * @param post_id to choose the post
+     *
+     * @return object An associative array of all the article records
+     */
     public static function getByID($conn, $id, $columns = '*')
     {
         $sql = "SELECT $columns
@@ -104,7 +115,11 @@ class Post{
     }
 
     /**
-     * 
+     * Get  the specific post by who have last birthday 
+     *
+     * @param object $conn Connection to the database
+     *
+     * @return object An associative array of all the article records
      */
     public static function getByBirthday($conn)
     {
@@ -123,7 +138,11 @@ class Post{
     }
 
     /**
-     * 
+     * update the post
+     *
+     * @param object $conn Connection to the database
+     *
+     * @return boolean
      */
     public function update($conn)
     {
@@ -155,7 +174,11 @@ class Post{
     }
 
     /**
-     * 
+     * delete the post
+     *
+     * @param object $conn Connection to the database
+     *
+     * @return object  post 
      */
     public function delete($conn)
     {
@@ -170,7 +193,11 @@ class Post{
     }
 
     /**
-     * 
+     * create post
+     *
+     * @param object $conn Connection to the database
+     *
+     * @return boolean 
      */
     public function create($conn)
     {
@@ -197,35 +224,11 @@ class Post{
 }
 
     /**
-     * 
+     * feture work
      */
     protected function validate()
     {
-        // if ($this->title == '') {
-        //     $this->errors[] = 'Title is required';
-        // }
-        // if ($this->content == '') {
-        //     $this->errors[] = 'Content is required';
-        // }
 
-        // if ($this->published_at != '') {
-        //     $date_time = date_create_from_format('Y-m-d H:i:s', $this->published_at);
-            
-        //     if ($date_time === false) {
-
-        //         $this->errors[] = 'Invalid date and time';
-
-        //     } else {
-
-        //         $date_errors = date_get_last_errors();
-
-        //         if ($date_errors['warning_count'] > 0) {
-        //             $this->errors[] = 'Invalid date and time';
-        //         }
-        //     }
-        // }
-
-        // return empty($this->errors);
         return true;
     }
 
