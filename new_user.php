@@ -3,7 +3,6 @@
 
 require 'classes/Database.php';
 require 'classes/Users.php';
-// require 'includes/post_form.php';
 
 
 $user = new Users();

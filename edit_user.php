@@ -29,19 +29,6 @@ if( $_SERVER["REQUEST_METHOD"] == "POST" ) {
 }
 
 
-// if( $_SERVER["REQUEST_METHOD"] == "POST" ) {
-
-//     $post->title = $_POST['title'];
-//     $post->content = $_POST['content'];
-//     $post->create_at = $_POST['create_at'];
-
-//     if($post -> update($conn)) {
-
-//         header("Location: http://" . $_SERVER['HTTP_HOST'] . $path. "/inmanage_social/post.php?id={$post->post_id}");
-//         exit;
-//     }
-// }
-
 ?>
 
 <?php require 'includes/header.php'; ?>

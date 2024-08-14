@@ -3,8 +3,6 @@
 
 require 'classes/Database.php';
 require 'classes/Post.php';
-// require 'includes/post_form.php';
-
 
 $post = new Post();
 
