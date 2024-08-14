@@ -43,7 +43,7 @@ if (isset($_GET['id'])) {
     </article>
 
     <a href="edit_user.php?id=<?= $user->user_id; ?>">Edit</a>
-    <a href="delete_article.php?id=<?= $user->user_id; ?>">Delete</a>
+    <a href="delete_user.php?id=<?= $user->user_id; ?>">Delete</a>
     <a href="index.php">Home</a>
 
 <?php else : ?>

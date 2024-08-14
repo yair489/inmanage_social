@@ -121,16 +121,35 @@ class Users{
     /**
      * 
      */
+
     public function delete($conn)
     {
-        $sql = "DELETE FROM article
-                WHERE id = :id";
-
-        $stmt = $conn->prepare($sql);
-
-        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
-
-        return $stmt->execute();
+        try {
+            // Start a transaction
+            $conn->beginTransaction();
+    
+            // Delete all posts of the user
+            $sql = "DELETE FROM post WHERE user_id = :user_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':user_id', $this->user_id, PDO::PARAM_INT);
+            $stmt->execute();
+    
+           // Deleting the user itself
+            $sql = "DELETE FROM users WHERE user_id = :user_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':user_id', $this->user_id, PDO::PARAM_INT);
+            $stmt->execute();
+    
+            // confirm the transaction
+            $conn->commit();
+    
+            return true;
+    
+        } catch (Exception $e) {
+            // If there is an error, cancel the transaction
+            $conn->rollBack();
+            throw $e;
+        }
     }
     
     /**
