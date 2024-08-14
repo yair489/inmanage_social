@@ -19,6 +19,9 @@ In addition, there are several other functions that were performed according to 
 * Given a date of birth for each user, return the last post of the user who has a birthday this month. This section was executed in the `brithday_post.php` file
 * Create a table that counts how many posts were added every hour. Done in the `data_post.php` file
 
+video description
+https://youtu.be/i2JaUn_NRqQ
+
 
 ## class diagram
 ![image](https://github.com/user-attachments/assets/f83b3a42-bef5-4cc9-8815-e9f9882256a5)
