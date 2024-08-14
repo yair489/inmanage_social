@@ -54,7 +54,11 @@ class Users{
     }
     
     /**
-     * 
+     * Get all the user
+     *
+     * @param object $conn Connection to the database
+     *
+     * @return object users
      */
     public static function getByID($conn , $id, $columns = '*')
     {
@@ -72,6 +76,13 @@ class Users{
 
         }
     }
+    /**
+     * Get all the user who active 
+     *
+     * @param object $conn Connection to the database
+     *
+     * @return object specific user
+     */
     public static function getByActiveUser($conn)
     {
         $sql = "SELECT *
@@ -85,8 +96,15 @@ class Users{
     }
     
     /**
-     * user_id user_name email active birthday password
-     */
+    * Updates a user's information in the `users` table.
+    *
+    * This function prepares and executes an SQL statement to update a user's details in the database.
+    * The following fields are updated: `user_id`, `user_name`, `email`, `content`, `active`, `birthday`, and `password`.
+    *   The function uses prepared statements to prevent SQL injection.
+    *
+    * @return bool Returns `true` on success or `false` on failure.
+    */
+
     public function update($conn)
     {
         $sql = "UPDATE users
@@ -109,18 +127,24 @@ class Users{
         $stmt->bindValue(':birthday', $this->birthday, PDO::PARAM_STR);
         $stmt->bindValue(':password', $this->password, PDO::PARAM_STR);
 
-        // if ($this->published_at == '') {
-        //     $stmt->bindValue(':published_at', null, PDO::PARAM_NULL);
-        // } else {
-        //     $stmt->bindValue(':published_at', $this->published_at, PDO::PARAM_STR);
-        // }
-
         return $stmt->execute();
     }
     
     /**
-     * 
-     */
+    * Deletes a user and all associated posts from the database.
+    *
+    * This function performs the following steps:
+    * 1. Starts a database transaction.
+    * 2. Deletes all posts associated with the user from the `post` table.
+    * 3. Deletes the user itself from the `users` table.
+    * 4. Commits the transaction if both deletions succeed.
+    *
+    * If an error occurs during the process, the transaction is rolled back, ensuring no partial deletions occur.
+    *
+    * @param PDO $conn The PDO connection object to the database.
+    * @return bool Returns `true` on successful deletion, or throws an exception if an error occurs.
+    * @throws Exception If an error occurs, it throws the exception after rolling back the transaction.
+    */
 
     public function delete($conn)
     {
@@ -153,8 +177,19 @@ class Users{
     }
     
     /**
-     * 
-     */
+    * Creates a new user record in the `users` table.
+    *
+    * This function inserts a new user into the database with the following fields:
+    * `user_name`, `content`, `email`, `birthday`, and `Active`.
+    * The function uses prepared statements to prevent SQL injection.
+    * 
+    * If the insertion is successful, the function retrieves the ID of the newly inserted user 
+    * and assigns it to the object's `id` property.
+    *
+    * @param PDO $conn The PDO connection object to the database.
+    * @return bool Returns `true` on successful insertion, or `false` if the execution fails.
+    */
+
     public function create($conn)//user_name content email birthday Active
     {
         $sql = "INSERT INTO users (user_name, content, email , birthday ,Active )
