@@ -14,7 +14,6 @@ if (isset($_GET['id'])) {
 ?>
 
 <?php require 'includes/header.php'; ?>
-<?php var_dump($post);?>
 <?php if ($post) :?>
 
     <article>

@@ -14,7 +14,6 @@ if (isset($_GET['id'])) {
 ?>
 
 <?php require 'includes/header.php'; ?>
-<?php var_dump($user);?>
 <?php if ($user) :?>
     <h2><?= htmlspecialchars($user->user_name); ?></h2>
     <article>

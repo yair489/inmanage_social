@@ -30,7 +30,8 @@ $users = Users::getAll($conn);
     <p><a href="new_post.php">New post</a>
     <a href="index_active.php">active user</a>
     <a href="new_user.php">New user</a>
-    <a href="post_birthday.php">post birthday</a></p>
+    <a href="post_birthday.php">post birthday</a>
+    <a href="data_post.php">post by hour</a></p>
 
 <?php else : ?>
     
