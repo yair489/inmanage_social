@@ -28,8 +28,8 @@ $users = Users::getAll($conn);
     
     <p>You are logged in. <a href="logout.php">Log out</a></p>
     <p><a href="new_post.php">New post</a>
-    <a href="index_active.php">active user</a>
-    <a href="new_user.php">New user</a>
+    <a href="new_user.php">New user</a></p>
+    <p><a href="index_active.php">active user</a>
     <a href="post_birthday.php">post birthday</a>
     <a href="data_post.php">post by hour</a></p>
 
@@ -56,7 +56,7 @@ $users = Users::getAll($conn);
                     </div>
                     <div style="display: inline-block; vertical-align: middle;">
                         <h2><a href="user.php?id=<?= htmlspecialchars($user['user_id']); ?>"><?= htmlspecialchars($user['user_name']); ?></a></h2>
-                        <p><?= htmlspecialchars($user['user_id']); ?></p>
+                        <p> my user_id <?= htmlspecialchars($user['user_id']); ?> </p>
                     </div>
                     <!--foe each user show the post -->
                     <?php $posts = Post::getByUserID($conn ,$user['user_id'] );// var_dump($posts);?>
