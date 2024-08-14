@@ -16,12 +16,7 @@ In addition, there are several other functions that were performed according to 
 * With the help of SQL, you can generate a query that will return all active users and their posts and display on the screen in a social media style, next to each user you must display the image retrieved in section 4. This section is fully implemented in the file `index_active.php`
 * Given a date of birth for each user, return the last post of the user who has a birthday this month. This section was executed in the `brithday_post.php` file
 * Create a table that counts how many posts were added every hour. Done in the `data_post.php` file
-  
 
 
-
-
-
-
-
+## class diagram
 ![image](https://github.com/user-attachments/assets/f83b3a42-bef5-4cc9-8815-e9f9882256a5)
