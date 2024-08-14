@@ -38,6 +38,7 @@ class Users{
      */
     public $password;
     
+    public $content;
     /**
      * 
      */
@@ -59,7 +60,7 @@ class Users{
     {
         $sql = "SELECT $columns
                 FROM users
-                WHERE id = :id";
+                WHERE user_id = :id";
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
@@ -70,6 +71,17 @@ class Users{
             return $stmt->fetch();
 
         }
+    }
+    public static function getByActiveUser($conn)
+    {
+        $sql = "SELECT *
+                FROM users
+                WHERE active = 1
+                ORDER BY user_name;";
+
+        $results = $conn->query($sql);
+
+        return $results->fetchAll(PDO::FETCH_ASSOC);
     }
     
     /**

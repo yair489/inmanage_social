@@ -7,7 +7,7 @@ require 'classes/Post.php';
 $db = new Database();
 $conn = $db->getConn();
 
-$users = Users::getAll($conn);
+$users = Users::getByActiveUser($conn);
 
 ?>
 <!DOCTYPE html>
@@ -28,7 +28,7 @@ $users = Users::getAll($conn);
     
     <p>You are logged in. <a href="logout.php">Log out</a></p>
     <p><a href="new_post.php">New post</a>
-    <a href="index_active.php">active user</a></p>
+    <a href="index.php"> Home </a></p>
 
 <?php else : ?>
     
@@ -52,7 +52,7 @@ $users = Users::getAll($conn);
                         </figure>
                     </div>
                     <div style="display: inline-block; vertical-align: middle;">
-                        <h2><a href="user.php?id=<?= htmlspecialchars($user['user_id']); ?>"><?= htmlspecialchars($user['user_name']); ?></a></h2>
+                        <h2><a href="article.php?id=<?= htmlspecialchars($user['user_id']); ?>"><?= htmlspecialchars($user['user_name']); ?></a></h2>
                         <p><?= htmlspecialchars($user['user_id']); ?></p>
                     </div>
                     <!--foe each user show the post -->
