@@ -93,6 +93,7 @@ class Users{
                 SET user_id = :user_id,
                     user_name = :user_name,
                     email = :email
+                    content = :content
                     active = :active,
                     birthday = :birthday,
                     password = :password
@@ -100,18 +101,19 @@ class Users{
 
         $stmt = $conn->prepare($sql);
 
-        $stmt->bindValue(':id', $this->user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':user_id', $this->user_id, PDO::PARAM_INT);
         $stmt->bindValue(':user_name', $this->user_name, PDO::PARAM_STR);
         $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
+        $stmt->bindValue(':content', $this->content, PDO::PARAM_STR);
         $stmt->bindValue(':active', $this->active, PDO::PARAM_INT);
         $stmt->bindValue(':birthday', $this->birthday, PDO::PARAM_STR);
         $stmt->bindValue(':password', $this->password, PDO::PARAM_STR);
 
-        if ($this->published_at == '') {
-            $stmt->bindValue(':published_at', null, PDO::PARAM_NULL);
-        } else {
-            $stmt->bindValue(':published_at', $this->published_at, PDO::PARAM_STR);
-        }
+        // if ($this->published_at == '') {
+        //     $stmt->bindValue(':published_at', null, PDO::PARAM_NULL);
+        // } else {
+        //     $stmt->bindValue(':published_at', $this->published_at, PDO::PARAM_STR);
+        // }
 
         return $stmt->execute();
     }

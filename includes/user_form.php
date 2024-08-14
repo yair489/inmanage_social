@@ -31,9 +31,13 @@
         <input type="datetime-local" name="birthday" id="birthday" value="<?= htmlspecialchars($user->birthday); ?>">
     </div>
 
-    <div>
+    <!-- <div>
     <label for="active"> Active </label>
     <input type="checkbox" name="active" id="active" value="1" <?= $user->active ? 'checked' : ''; ?>>
+    </div> -->
+    <div>
+        <label for="active"> active </label>
+        <input type="number" name="active" id="active" placeholder="Enter a number 0 or 1" value="<?= htmlspecialchars($user->active); ?>">
     </div>
 
     <button>Save</button>
