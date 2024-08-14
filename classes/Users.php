@@ -134,21 +134,19 @@ class Users{
     /**
      * 
      */
-    public function create($conn)
+    public function create($conn)//user_name content email birthday Active
     {
-        $sql = "INSERT INTO article (title, content, published_at)
-                    VALUES (:title, :content, :published_at)";
+        $sql = "INSERT INTO users (user_name, content, email , birthday ,Active )
+                    VALUES (:user_name, :content, :email , :birthday ,:Active)";
 
             $stmt = $conn->prepare($sql);
 
-            $stmt->bindValue(':title', $this->title, PDO::PARAM_STR);
+            $stmt->bindValue(':user_name', $this->user_name, PDO::PARAM_STR);
             $stmt->bindValue(':content', $this->content, PDO::PARAM_STR);
+            $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(':birthday', $this->birthday, PDO::PARAM_STR);
+            $stmt->bindValue(':Active', $this->Active, PDO::PARAM_INT);
 
-            if ($this->published_at == '') {
-                $stmt->bindValue(':published_at', null, PDO::PARAM_NULL);
-            } else {
-                $stmt->bindValue(':published_at', $this->published_at, PDO::PARAM_STR);
-            }
 
             if ($stmt->execute()) {
                 $this->id = $conn->lastInsertId();

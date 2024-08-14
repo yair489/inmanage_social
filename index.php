@@ -28,7 +28,8 @@ $users = Users::getAll($conn);
     
     <p>You are logged in. <a href="logout.php">Log out</a></p>
     <p><a href="new_post.php">New post</a>
-    <a href="index_active.php">active user</a></p>
+    <a href="index_active.php">active user</a>
+    <a href="new_user.php">New user</a></p>
 
 <?php else : ?>
     
