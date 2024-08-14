@@ -20,3 +20,9 @@ In addition, there are several other functions that were performed according to 
 
 ## class diagram
 ![image](https://github.com/user-attachments/assets/f83b3a42-bef5-4cc9-8815-e9f9882256a5)
+
+
+
+## future work
+* Create permissions so that the administrator can perform all actions and users can change only their details
+* Make sure the fields are correct when entering them
